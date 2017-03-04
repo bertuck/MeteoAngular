@@ -6,7 +6,6 @@ $app.controller('meteoController', ['$scope', '$log', '$interval', 'meteoService
 
     $scope.map = meteoService.getMapConfig();
 
-    $scope.windowOption = twitterService.getWindowInfo();
 
     this.updateMarkers = function () {
         meteoService.getCityMarkers($scope).then(function(markers) {
@@ -21,14 +20,14 @@ $app.controller('meteoController', ['$scope', '$log', '$interval', 'meteoService
     $scope.$on('$destroy', function () {
         $interval.cancel(theInterval)
     });
+    this.updateMarkers();
+
+    $scope.windowOption = twitterService.getWindowInfo();
+
     $scope.onClick = function (data) {
-        $scope.windowOptions.show = !$scope.windowOptions.show;
-        console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
+        $scope.show = !$scope.show;
+        console.log('$scope.windowOptions.show: ', $scope.show);
         console.log('This is a ' + data);
     };
-    $scope.closeClick = function () {
-        $scope.windowOptions.show = false;
-    };
 
-    this.updateMarkers();
 }]);

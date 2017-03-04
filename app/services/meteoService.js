@@ -55,12 +55,7 @@ $app.factory('meteoService', ['$http', '$q', '$log', function($http, $q, $log) {
                        longitude: response.data.coord.lon
                    },
                    options: {draggable: false, icon: { url: $scope.getWeatherIcon(response.data.weather[0].icon) }},
-                   onClick : function(marker, eventName, model) {
-                       console.log(model);
-                       model.show = !model.show;
-                       $scope.activeModel = model.coords;
-                       $scope.activeModel.show = true;
-                   }
+                   data: 'restaurant',
                });
                if(id == cities.length){
                    deferred.resolve(markers);
@@ -71,13 +66,21 @@ $app.factory('meteoService', ['$http', '$q', '$log', function($http, $q, $log) {
         return deferred.promise;
     }
 
-    function getMapConfig() {
+    function getMapConfig($scope) {
         return {
             center: {
                 latitude: 47.4596656,
                 longitude: 2.4609375
             },
             zoom: 6,
+            window: {
+                marker: {},
+                show: false,
+                closeClick: function() {
+                    this.show = false;
+                },
+                options: {}
+            },
             options: {
                 zoomControl: false,
                 streetViewControl: false,
