@@ -3,6 +3,13 @@
  */
 $app = angular.module('meteoApp', ['ngRoute', 'nemLogging', 'ngtweet', 'geolocation','uiGmapgoogle-maps']).config(config);
 
+$app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
+  GoogleMapApi.configure({
+    key: 'AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA',
+    v: '3.20',
+    libraries: 'weather,geometry,visualization'
+  });
+}]);
 
 config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'uiGmapGoogleMapApiProvider'];
 
@@ -18,12 +25,6 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
   $locationProvider.html5Mode(false);
 
   $httpProvider.interceptors.push('authInterceptor');
-
-  uiGmapGoogleMapApi.configure({
-    key: 'AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA',
-    v: '3.20',
-    libraries: 'weather,geometry,visualization'
-  });
 
   $routeProvider
       .when('/', {
