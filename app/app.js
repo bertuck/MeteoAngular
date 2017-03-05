@@ -1,9 +1,10 @@
 /**
  * Definition of the main app module and its dependencies
  */
-$app = angular.module('meteoApp', ['ngRoute', 'uiGmapgoogle-maps', 'nemLogging', 'ngtweet', 'geolocation']).config(config);
+$app = angular.module('meteoApp', ['ngRoute', 'nemLogging', 'ngtweet', 'geolocation','uiGmapgoogle-maps']).config(config);
 
-config.$inject = ['$routeProvider', 'uiGmapGoogleMapApiProvider', 'nemLogging', 'ngtweet', 'geolocation'];
+
+config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'uiGmapGoogleMapApiProvider'];
 
 /**
  * App routing
@@ -12,13 +13,13 @@ config.$inject = ['$routeProvider', 'uiGmapGoogleMapApiProvider', 'nemLogging', 
  * into separate file
  *
  */
-function config($routeProvider, GoogleMapApi, nemLogging, ngtweet, geolocation) {
+function config($routeProvider, $locationProvider, $httpProvider, $compileProvider, uiGmapGoogleMapApi) {
 
   $locationProvider.html5Mode(false);
 
   $httpProvider.interceptors.push('authInterceptor');
 
-  GoogleMapApi.configure({
+  uiGmapGoogleMapApi.configure({
     key: 'AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA',
     v: '3.20',
     libraries: 'weather,geometry,visualization'
