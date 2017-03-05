@@ -1,3 +1,5 @@
+'use strict';
+
 $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($http, $q, $log, geolocation) {
 
     var appId = "&appid=51a602771f7353caa9e33b9811d365ef";
@@ -32,14 +34,13 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         var url = "http://api.openweathermap.org/data/2.5/group?id="+ids+"&units=metric"+appId
         $http.get(url).then(function(weather) {
             self.setCitiesWeatherConfig($scope, weather);
-            $scope.map.markers = markers;
         });
     }
 
     function setCitiesWeatherConfig($scope, weather) {
         var self = this;
         var id = 0;
-        markers = [];
+        var markers = [];
         weather.data.list.forEach(function (city) {
             markers.push({
                 id:  id++,
@@ -47,7 +48,6 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
                 temp: city.main.temp,
                 latitude: city.coord.lat,
                 longitude: city.coord.lon,
-
                 options: {draggable: false, icon: { url: self.getWeatherIcon(city.weather[0].icon) }},
                 events : {
                     click: function(marker, eventName, model) {
@@ -60,6 +60,7 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
                 }
             });
         });
+        $scope.map.markers = markers;
     }
 
     function getWeatherIcon(defaultIconFileName) {
@@ -105,39 +106,86 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
                 },
                 options: {}
             },
-
+            bounds : {
+                northeast: {
+                    latitude: '52.39632350723714',
+                    longitude: '11.826165039062516'
+                },
+                southwest: {
+                    latitude: '40.94189980474191',
+                    longitude: '-6.029371093750001'
+                }
+            },
+            events: {
+                click: function (map, eventName, originalEventArgs) {
+                   /* var MapBounds = new google.maps.LatLngBounds(
+                        new google.maps.LatLng(52.39632350723714, 11.826165039062516),
+                        new google.maps.LatLng(40.94189980474191, -6.029371093750001));
+                    if (!MapBounds.contains(map.getCenter())) {
+                        map.setCenter(new google.maps.LatLng(47.4596656, 2.4609375));
+                    }*/
+                },
+            },
             options: {
                 zoomControl: false,
                 streetViewControl: false,
                 scrollwheel: false,
-                draggable: false,
+                draggable: true,
                 mapTypeControl: false,
                 navigationControl: false,
                 scaleControl: false,
                 disableDoubleClickZoom: true,
-                mapTypeId: google.maps.MapTypeId.SATELLITE },
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            },
             styles: [
-                { featureType: 'all', elementType:'labels', stylers: [ {visibility:'off'} ] },
-                { featureType: 'road', stylers: [ {visibility:'off'} ] },
+                {
+                    featureType: 'all',
+                    elementType:'labels',
+                    stylers: [ {visibility:'off'} ]
+                },
+                {
+                    featureType: 'road',
+                    stylers: [ {visibility:'off'} ]
+                },
             ]
         };
     }
 
     function getCurrentWeatherGeolocation() {
         var deferred = $q.defer();
-        $self = this;
+        var self = this;
         geolocation.getLocation().then(function(data){
             var url = "http://api.openweathermap.org/data/2.5/weather?lat="+data.coords.latitude+"&lon="+data.coords.longitude+ "&units=metric" + appId;
             deferred.resolve($http.get(url).then(function(response) {
                 return {
-                    icon: $self.getWeatherIcon(response.data.weather[0].icon),
+                    icon: self.getWeatherIcon(response.data.weather[0].icon),
                     name: response.data.name,
-                    temp: response.data.main.temp+'°',
+                    temp: response.data.main.temp+' °C',
                     show: false
                 };
             }));
         });
         return deferred.promise;
+    }
+
+    function setCurrentPostionInfo($scope) {
+        var geocoder = new google.maps.Geocoder();
+        geolocation.getLocation().then(function(data) {
+            var latlng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
+            geocoder.geocode({latLng: latlng}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK && results[0] && results[1]) {
+                    $scope.position = {};
+                    $scope.position.street = results[0].formatted_address;
+                    results.forEach(function (address_component, i) {
+                        if (address_component.types[0] == "locality") {
+                            $scope.position.region = address_component.address_components[2].long_name;
+                            $scope.position.country = address_component.address_components[3].long_name;
+                            $scope.position.city = address_component.address_components[0].long_name;
+                        }
+                    });
+                }
+            });
+        });
     }
 
     return {
@@ -146,6 +194,7 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         getWeatherIcon: getWeatherIcon,
         getMapConfig: getMapConfig,
         setCitiesWeatherConfig: setCitiesWeatherConfig,
-        getCurrentWeatherGeolocation: getCurrentWeatherGeolocation
+        getCurrentWeatherGeolocation: getCurrentWeatherGeolocation,
+        setCurrentPostionInfo: setCurrentPostionInfo
     }
 }]);

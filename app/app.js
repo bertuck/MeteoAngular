@@ -1,20 +1,7 @@
 /**
- *
- * AngularJS Boilerplate
- * @description           Description
- * @author                Jozef Butko // www.jozefbutko.com/resume
- * @url                   www.jozefbutko.com
- * @version               1.1.7
- * @date                  March 2015
- * @license               MIT
- *
- */
-
-
-/**
  * Definition of the main app module and its dependencies
  */
-$app = angular.module('boilerplate', ['ngRoute', 'uiGmapgoogle-maps', 'nemLogging', 'ngtweet', 'geolocation']).config(config);
+$app = angular.module('meteoApp', ['ngRoute', 'uiGmapgoogle-maps', 'nemLogging', 'ngtweet', 'geolocation']).config(config);
 
 
 config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'uiGmapGoogleMapApiProvider'];
@@ -30,29 +17,28 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
 
   $locationProvider.html5Mode(false);
 
-  // routes
+  $httpProvider.interceptors.push('authInterceptor');
+
+  uiGmapGoogleMapApi.configure({
+    key: 'AIzaSyBa3or80gCxG72U84RpCujD59sPOGJpPsw',
+    v: '3.20',
+    libraries: 'weather,geometry,visualization'
+  });
+
   $routeProvider
       .when('/', {
         templateUrl: 'components/pages/home.html',
         controller: 'meteoController',
         controllerAs: 'main'
       })
-      .when('/contact', {
-        templateUrl: 'components/pages/contact.html',
-        controller: 'contactController',
+      .when('/more', {
+        templateUrl: 'components/pages/more.html',
+        controller: 'moreController',
         controllerAs: 'main'
       })
       .otherwise({
-        redirectTo: '/'
+        templateUrl: 'components/pages/404.html',
       });
-
-  $httpProvider.interceptors.push('authInterceptor');
-
-  uiGmapGoogleMapApi.configure({
-    key: 'AIzaSyBa3or80gCxG72U84RpCujD59sPOGJpPsw',
-    v: '3.20', //defaults to latest 3.X anyhow
-    libraries: 'weather,geometry,visualization'
-  });
 }
 
 
@@ -61,19 +47,16 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
  * or handle what should happend on 40x, 50x errors
  *
  */
-angular.module('boilerplate').factory('authInterceptor', authInterceptor);
+angular.module('meteoApp').factory('authInterceptor', authInterceptor);
 authInterceptor.$inject = ['$rootScope', '$q', 'LocalStorage', '$location'];
 
 function authInterceptor($rootScope, $q, LocalStorage, $location) {
 
   return {
-    // intercept every request
     request: function(config) {
       config.headers = config.headers || {};
       return config;
     },
-
-    // Catch 404 errors
     responseError: function(response) {
       if (response.status === 404) {
         $location.path('/');

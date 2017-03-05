@@ -3,13 +3,25 @@
     border-bottom-right-radius: 8px;
     text-align: center;
     z-index: 9999;
-    position: absolute;
+    position: fixed;
     font-size: 1em;
-    background: rgba(191, 191, 243, 0.9);
+    background: rgba(191, 191, 243, 0.8);
     float: left;
     width: 200px;
     height: 200px;
     top: 100px;
+    right: 0;
+}
+.weather-widget:after {
+    content: '';
+    top: -18px;
+    right: 36px;
+    content:"\A";
+    border-style: solid;
+    border-width: 10px 15px 10px 0;
+    border-color: transparent white transparent transparent;
+    position: absolute;
+    transform: rotate(90deg);
 }
 
 .weather-widget .content h4 {
@@ -26,8 +38,9 @@
 .weather-widget .content .header h2 {
     color: white;
     margin: 0;
-    font-size: 1em;
-    font-weight: normal;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
     font-family: monospace;
 }
 
@@ -38,14 +51,14 @@
 
 .weather-widget .content h6 {
     color: #000;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 2px;
 }
 
-.weather-widget .content .body .bottom p {
-    color: #4d4d4d;
-    font-size: 1em;
-    line-height: 1.4em;
+@media (max-width: 767px) {
+    .weather-widget {
+        top: 50px;
+    }
 }

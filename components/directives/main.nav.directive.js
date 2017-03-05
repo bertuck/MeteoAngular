@@ -1,29 +1,24 @@
-;(function() {
+'use strict';
 
-  'use strict';
+/**
+ * Responsive navigation
+ *
+ * Usage:
+ * <responsive-nav></responsive-nav>
+ *
+ * Example in main-nav.html file
+ *
+ */
 
-  /**
-   * Main navigation, just a HTML template
-   * @author Jozef Butko
-   * @ngdoc  Directive
-   *
-   * @example
-   * <main-nav><main-nav/>
-   *
-   */
-  angular
-    .module('boilerplate')
-    .directive('mainNav', tinMainNav);
+$app.directive('mainNav', function() {
+      return {
+        restrict: 'E',
+        templateUrl: 'components/blocks/main-nav.html',
+        controller: function($scope) {
+          $scope.openMenu = function() {
 
-  function tinMainNav() {
-
-    // Definition of directive
-    var directiveDefinitionObject = {
-      restrict: 'E',
-      templateUrl: 'components/blocks/main-nav.html'
-    };
-
-    return directiveDefinitionObject;
-  }
-
-})();
+          };
+        }
+      }
+    }
+);

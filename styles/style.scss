@@ -1,43 +1,16 @@
-/******************************************************************
 
-Site Name: AngularJS Boilerplate
-Code: Jozef Butko - jozefbutko.com/resume
-Date: Mar 2015
-
-******************************************************************/
-
-// normalize: http://necolas.github.io/normalize.css/
 @import "partials/normalize";
-// Sass variables
 @import "partials/variables";
-// Helpers
 @import "partials/helpers";
-// typography
 @import "partials/typography";
-// Sass functions
 @import "partials/functions";
-// import mixins
 @import "partials/mixins";
-// the grid
 @import "partials/grid";
-//remove google style
 @import "partials/google";
-
 @import "partials/twitter";
 @import "partials/widgets";
-
-
-/*********************
-IMPORTING MODULES
-*********************/
-
-
-
-
-
-
-
-
+@import "partials/maps";
+@import "partials/nav";
 
 /*********************
 PRINT STYLESHEET
@@ -48,22 +21,12 @@ PRINT STYLESHEET
   @import "partials/print";
 }
 
-/*********************
-REMOVE GOOGLE STYLESHEET
-*********************/
-
-
-.angular-google-map-container {
-  height: 880px;
-}
 
 .infobox:first-child img {
   top: 5px;
   left: -5px
 }
 
-.header {
-  border-bottom: 1px solid;
-  background-color: white;
+#not-found img {
+  margin: 50px;
 }
-

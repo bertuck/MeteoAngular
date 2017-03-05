@@ -1,3 +1,5 @@
+'use strict';
+
 $app.factory('twitterService', ['$http', '$q', '$log', function($http, $q, $log) {
 
     var citiesWidget = {
