@@ -7,18 +7,14 @@ describe('meteoController', function() {
         $controller = _$controller_;
     }));
 
-    describe('$scope.grade', function() {
-
-        it('sets the strength to "strong" if the password length is >8 chars', function() {
+    describe('$scope.map', function() {
+        it('set Map config', function() {
             var $scope = {};
             var controller = $controller('meteoController', { $scope: $scope });
-            $scope.password = 'longerthaneightchars';
-
             $scope.map = meteoService.getMapConfig();
             $scope.map.window = twitterService.getWindow();
-
             meteoService.startCitiesWeather($scope, $interval);
-            expect($scope.strength).toEqual('strong');
+            expect($scope.map).toEqual('');
         });
     });
 });
