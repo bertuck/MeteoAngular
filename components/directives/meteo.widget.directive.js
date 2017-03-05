@@ -4,9 +4,9 @@
  * Responsive navigation
  *
  * Usage:
- * <responsive-nav></responsive-nav>
+ * <meteo-widget></meteo-widget>
  *
- * Example in main-nav.html file
+ * Example in meteo-widget.html file
  *
  */
 

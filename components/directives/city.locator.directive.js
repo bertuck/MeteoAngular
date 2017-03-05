@@ -4,7 +4,7 @@
  * Responsive navigation
  *
  * Usage:
- * <footer></footer>
+ * <city-localtor></city-localtor>
  *
  * Example in footer.html file
  *

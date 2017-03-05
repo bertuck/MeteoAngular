@@ -11,9 +11,9 @@ $app.factory('twitterService', ['$http', '$q', '$log', function($http, $q, $log)
         strasbourg: '838063366937665537'
     };
 
-    function getWindowConfig() {
+    function getWindow() {
         return {
-            id: '838059003909390336',
+            id: '',
             marker: 0,
             show: false,
             closeClick: function () {
@@ -40,6 +40,6 @@ $app.factory('twitterService', ['$http', '$q', '$log', function($http, $q, $log)
         }
     }
     return {
-        getWindowConfig: getWindowConfig,
+        getWindow: getWindow,
     }
 }]);

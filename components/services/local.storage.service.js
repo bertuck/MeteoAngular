@@ -1,5 +1,3 @@
-
-
 'use strict';
 
 
@@ -28,16 +26,9 @@ angular.module('meteoApp').factory('LocalStorage', ['$window', '$rootScope', Loc
 
 function LocalStorageService($window, $rootScope) {
 
-    /**
-     * Test browser if it supports localStorage
-     */
     var storage = (typeof window.localStorage === 'undefined') ? undefined : window.localStorage,
         supported = !(typeof storage === undefined || typeof window.JSON === undefined);
 
-    /*
-     * whenever localStorage gets updated trigger
-     * $digest cicle so all values are refreshed in the view
-     */
     angular.element($window).on('storage', function(event, name) {
         if (event.key === name) {
             $rootScope.$apply();
@@ -53,9 +44,6 @@ function LocalStorageService($window, $rootScope) {
         removeAll: removeAll,
         list: list
     };
-
-
-    //////////////// function definitions
 
 
     /**

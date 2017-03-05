@@ -124,7 +124,7 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
                     if (!MapBounds.contains(map.getCenter())) {
                         map.setCenter(new google.maps.LatLng(47.4596656, 2.4609375));
                     }*/
-                },
+                }
             },
             options: {
                 zoomControl: false,
