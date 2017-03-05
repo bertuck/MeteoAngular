@@ -21,7 +21,7 @@
     // Definition of directive
     var directiveDefinitionObject = {
       restrict: 'E',
-      templateUrl: 'components/html/responsive-nav.html',
+      templateUrl: 'components/blocks/responsive-nav.html',
       link: function(scope, elem, attrs, ctrl) {
       	elem.on('click', function(e) {
       		$('.responsive-wrapper').slideToggle( 150, 'swing');

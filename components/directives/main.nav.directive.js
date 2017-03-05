@@ -20,7 +20,7 @@
     // Definition of directive
     var directiveDefinitionObject = {
       restrict: 'E',
-      templateUrl: 'components/html/main-nav.html'
+      templateUrl: 'components/blocks/main-nav.html'
     };
 
     return directiveDefinitionObject;

@@ -33,12 +33,12 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
   // routes
   $routeProvider
       .when('/', {
-        templateUrl: 'app/pages/home.html',
-        controller: 'homeController',
+        templateUrl: 'components/pages/home.html',
+        controller: 'meteoController',
         controllerAs: 'main'
       })
       .when('/contact', {
-        templateUrl: 'app/pages/contact.html',
+        templateUrl: 'components/pages/contact.html',
         controller: 'contactController',
         controllerAs: 'main'
       })

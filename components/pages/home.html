@@ -1,9 +1,8 @@
-<meteo-widget templateUrl="components/html/meteo-widget.html" templateParameter="mw.options">
-
+<meteo-widget templateUrl="components/blocks/meteo-widget.html" templateParameter="mw.options">
 </meteo-widget>
-
+<header>
 <div class="row">
-    <div class="">
+    <div class="col-lg-12">
         <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" styles="map.styles" options="map.options">
 
             <ui-gmap-window
@@ -11,7 +10,7 @@
                     coords="map.window.model"
                     options="map.window.options"
                     closeClick="map.window.closeClick()"
-                    templateUrl="'components/html/twitter-window.html'"
+                    templateUrl="'components/blocks/twitter-window.html'"
                     templateParameter="map">
             </ui-gmap-window>
 
@@ -24,5 +23,8 @@
 
 
         </ui-gmap-google-map>
+
     </div>
 </div>
+
+</header>

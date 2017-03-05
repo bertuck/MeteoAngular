@@ -1,14 +1,15 @@
 .weather-widget {
-    height: 200px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     text-align: center;
     z-index: 9999;
     position: absolute;
-    font-size: 1.4em;
-    background: rgba(253, 253, 255, 0.9);
+    font-size: 1em;
+    background: rgba(191, 191, 243, 0.9);
     float: left;
     width: 200px;
+    height: 200px;
+    top: 100px;
 }
 
 .weather-widget .content h4 {
@@ -17,17 +18,17 @@
 }
 
 .weather-widget .content .header {
-    border-bottom: 1px solid grey;
     display: block;
     width: 100%;
+    background-color: #1DA1F2;
 }
 
 .weather-widget .content .header h2 {
-    color: #4d4d4d;
+    color: white;
     margin: 0;
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: normal;
-    background-color: white
+    font-family: monospace;
 }
 
 .weather-widget .content img {

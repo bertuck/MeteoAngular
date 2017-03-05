@@ -4,7 +4,7 @@ $app.directive('meteoWidget', ['meteoService', function(meteoService) {
         restrict: 'E',
         controller: function($scope) {
             $scope.parameter = {
-                icon: 'images/icons/load-min.gif',
+                icon: 'images/icons/load-min.gif'
             };
             $scope.date = new Date();
             meteoService.getCurrentWeatherGeolocation().then(function (currentWeather) {
@@ -12,18 +12,7 @@ $app.directive('meteoWidget', ['meteoService', function(meteoService) {
             });
         },
         templateUrl: function(elem, attrs) {
-            return attrs.templateUrl || 'components/html/meteo-widget.html'
-        },
-        parameters: function(scope, element, $attr) {
-            scope.templateParameter
-        },
-        link: function (scope, element, attrs) {
-            $scope.parameter = {
-                options: {
-                    icon: 'images/icons/load.gif',
-                }
-            };
-            scope.parameters = attrs.templateParameter;
+            return attrs.templateUrl || 'components/blocks/meteo-widget.html'
         }
     };
 }]);

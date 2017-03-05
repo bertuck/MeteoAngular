@@ -11,6 +11,19 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         strasbourg: 2973783
     };
 
+    var refresh_timeout = 1000000;
+
+    function startCitiesWeather($scope, $interval) {
+        var interval = $interval(function(){
+            this.getCitiesWeather($scope);
+        }.bind(this), refresh_timeout);
+
+        $scope.$on('$destroy', function () {
+            $interval.cancel(interval)
+        });
+        this.getCitiesWeather($scope);
+    }
+
     function getCitiesWeather($scope) {
         var self = this;
         var ids = Object.keys(cities).map(function(key) {
@@ -128,6 +141,7 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
     }
 
     return {
+        startCitiesWeather: startCitiesWeather,
         getCitiesWeather: getCitiesWeather,
         getWeatherIcon: getWeatherIcon,
         getMapConfig: getMapConfig,
