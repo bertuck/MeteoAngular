@@ -1,17 +1,9 @@
-describe("Unit Testing Meteo", function() {
-    beforeEach(angular.mock.module('meteoApp'));
-    it('should have a LoginCtrl controller', function() {
-        //expect(App.LoginCtrl).toBeDefined();
-    });
-});
-
 describe('meteoController', function() {
     beforeEach(module('meteoApp'));
 
     var $controller;
 
     beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
         $controller = _$controller_;
     }));
 
@@ -21,7 +13,11 @@ describe('meteoController', function() {
             var $scope = {};
             var controller = $controller('meteoController', { $scope: $scope });
             $scope.password = 'longerthaneightchars';
-            $scope.grade();
+
+            $scope.map = meteoService.getMapConfig();
+            $scope.map.window = twitterService.getWindow();
+
+            meteoService.startCitiesWeather($scope, $interval);
             expect($scope.strength).toEqual('strong');
         });
     });

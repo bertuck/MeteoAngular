@@ -20,7 +20,7 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
   $httpProvider.interceptors.push('authInterceptor');
 
   uiGmapGoogleMapApi.configure({
-    key: 'AIzaSyBa3or80gCxG72U84RpCujD59sPOGJpPsw',
+    key: 'AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA',
     v: '3.20',
     libraries: 'weather,geometry,visualization'
   });
