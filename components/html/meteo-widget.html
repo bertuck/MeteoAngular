@@ -1,0 +1,14 @@
+<div class="weather-widget">
+    <div class="content">
+        <div class="header">
+            <h2>{{date | date:'EEEE dd MMMM'}}</h2>
+        </div>
+        <div class="body">
+            <img src="{{ parameter.icon }}" alt="">
+            <h6>{{ parameter.temp }}</h6>
+            <div class="bottom">
+                <p>{{ parameter.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>

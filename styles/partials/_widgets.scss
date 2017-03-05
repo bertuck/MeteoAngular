@@ -1,0 +1,50 @@
+.weather-widget {
+    height: 200px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+    z-index: 9999;
+    position: absolute;
+    font-size: 1.4em;
+    background: rgba(253, 253, 255, 0.9);
+    float: left;
+    width: 200px;
+}
+
+.weather-widget .content h4 {
+    color: #4d4d4d;
+    font-size: 1em;
+}
+
+.weather-widget .content .header {
+    border-bottom: 1px solid grey;
+    display: block;
+    width: 100%;
+}
+
+.weather-widget .content .header h2 {
+    color: #4d4d4d;
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: normal;
+    background-color: white
+}
+
+.weather-widget .content img {
+    display: block;
+    margin: 1em auto;
+}
+
+.weather-widget .content h6 {
+    color: #000;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.weather-widget .content .body .bottom p {
+    color: #4d4d4d;
+    font-size: 1em;
+    line-height: 1.4em;
+}

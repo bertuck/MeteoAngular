@@ -1,0 +1,46 @@
+.twitter-timeline {
+  border-radius: 8px;
+  top: -20px;
+  background-color: white;
+  height: 270px !important;
+}
+
+.twitterWidget {
+  background-color: white
+}
+
+.twitter-window {
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 42px;
+  border-bottom: 1px dotted gray;
+  background-color: #1DA1F2
+}
+
+.twitter-window:before {
+  content: '';
+  width: 20px;
+  height: 40px;
+  top: -10px;
+  left: 15px;
+  position: absolute;
+  transform: rotate(50deg) skew(10deg);
+  z-index: -1;
+  background-color: #1DA1F2;
+}
+
+.twitter-window #city-title {
+  float: left;
+  font-size: 1.8em;
+  font-weight: normal;
+  margin-left: 10px;
+  margin-right: 10px
+}
+
+.twitter-window #city-temp {
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
+  font-size: 1.1em
+}

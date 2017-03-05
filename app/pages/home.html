@@ -1,5 +1,9 @@
+<meteo-widget templateUrl="components/html/meteo-widget.html" templateParameter="mw.options">
+
+</meteo-widget>
+
 <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="">
         <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" styles="map.styles" options="map.options">
 
             <ui-gmap-window
@@ -7,12 +11,17 @@
                     coords="map.window.model"
                     options="map.window.options"
                     closeClick="map.window.closeClick()"
-                    templateUrl="'infowindow.tpl.html'"
-                    templateParameter="map.window">
+                    templateUrl="'components/html/twitter-window.html'"
+                    templateParameter="map">
             </ui-gmap-window>
 
-            <ui-gmap-marker ng-repeat="m in markers" coords="m.coords" options="m.options" idkey="m.id" onClick="onClick()">>
-            </ui-gmap-marker>
+            <ui-gmap-markers
+                    models="map.markers"
+                    coords="'self'"
+                    events="'self'"
+                    options="'options'">
+            </ui-gmap-markers>
+
 
         </ui-gmap-google-map>
     </div>

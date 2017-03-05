@@ -14,7 +14,7 @@
 /**
  * Definition of the main app module and its dependencies
  */
-$app = angular.module('boilerplate', ['ngRoute', 'uiGmapgoogle-maps', 'nemLogging'   ]).config(config);
+$app = angular.module('boilerplate', ['ngRoute', 'uiGmapgoogle-maps', 'nemLogging', 'ngtweet', 'geolocation']).config(config);
 
 
 config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'uiGmapGoogleMapApiProvider'];
@@ -34,17 +34,12 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
   $routeProvider
       .when('/', {
         templateUrl: 'app/pages/home.html',
-        controller: 'meteoController',
+        controller: 'homeController',
         controllerAs: 'main'
       })
       .when('/contact', {
         templateUrl: 'app/pages/contact.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .when('/setup', {
-        templateUrl: 'app/pages/setup.html',
-        controller: 'MainController',
+        controller: 'contactController',
         controllerAs: 'main'
       })
       .otherwise({
@@ -72,7 +67,6 @@ authInterceptor.$inject = ['$rootScope', '$q', 'LocalStorage', '$location'];
 function authInterceptor($rootScope, $q, LocalStorage, $location) {
 
   return {
-
     // intercept every request
     request: function(config) {
       config.headers = config.headers || {};
