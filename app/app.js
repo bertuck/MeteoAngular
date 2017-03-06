@@ -1,27 +1,13 @@
 /**
  * Definition of the main app module and its dependencies
  */
-$app = angular.module('meteoApp', ['ngRoute', 'nemLogging', 'ngtweet', 'geolocation','uiGmapgoogle-maps']).config(config);
+$app = angular.module('meteoApp', ['ngRoute', 'nemLogging', 'ngtweet', 'geolocation','uiGmapgoogle-maps']);//.config(config);
 
-$app.config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
-  GoogleMapApi.configure({
+$app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'uiGmapGoogleMapApiProvider', function ($routeProvider, $locationProvider, $httpProvider, $compileProvider, uiGmapGoogleMapApi) {
+  uiGmapGoogleMapApi.configure({
     key: 'AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA',
-    v: '3.20',
     libraries: 'weather,geometry,visualization'
   });
-}]);
-
-config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'uiGmapGoogleMapApiProvider'];
-
-/**
- * App routing
- *
- * You can leave it here in the config section or take it out
- * into separate file
- *
- */
-function config($routeProvider, $locationProvider, $httpProvider, $compileProvider, uiGmapGoogleMapApi) {
-
   $locationProvider.html5Mode(false);
 
   $httpProvider.interceptors.push('authInterceptor');
@@ -40,8 +26,7 @@ function config($routeProvider, $locationProvider, $httpProvider, $compileProvid
       .otherwise({
         templateUrl: 'components/pages/404.html',
       });
-}
-
+}]);
 
 /**
  * You can intercept any request or response inside authInterceptor

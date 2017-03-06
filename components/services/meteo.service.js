@@ -91,7 +91,7 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         return 'images/icons/weather/'+timeOfDay+'/'+iconName+'.png';
     }
 
-    function getMapConfig() {
+    function getMapConfig(maps) {
         return {
             center: {
                 latitude: 47.4596656,
@@ -118,19 +118,19 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
             },
             events: {
                 click: function (map, eventName, originalEventArgs) {
-                   /* var MapBounds = new google.maps.LatLngBounds(
-                        new google.maps.LatLng(52.39632350723714, 11.826165039062516),
-                        new google.maps.LatLng(40.94189980474191, -6.029371093750001));
-                    if (!MapBounds.contains(map.getCenter())) {
-                        map.setCenter(new google.maps.LatLng(47.4596656, 2.4609375));
-                    }*/
+                     var MapBounds = new google.maps.LatLngBounds(
+                     new google.maps.LatLng(52.39632350723714, 11.826165039062516),
+                     new google.maps.LatLng(40.94189980474191, -6.029371093750001));
+                     if (!MapBounds.contains(map.getCenter())) {
+                     map.setCenter(new google.maps.LatLng(47.4596656, 2.4609375));
+                    }
                 }
             },
             options: {
                 zoomControl: false,
                 streetViewControl: false,
                 scrollwheel: false,
-                draggable: true,
+                draggable: false,
                 mapTypeControl: false,
                 navigationControl: false,
                 scaleControl: false,
@@ -151,26 +151,24 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         };
     }
 
-    function getCurrentWeatherGeolocation() {
-        var deferred = $q.defer();
+    function getCurrentWeatherGeolocation($scope) {
         var self = this;
         geolocation.getLocation().then(function(data){
             var url = "http://api.openweathermap.org/data/2.5/weather?lat="+data.coords.latitude+"&lon="+data.coords.longitude+ "&units=metric" + appId;
-            deferred.resolve($http.get(url).then(function(response) {
-                return {
-                    icon: self.getWeatherIcon(response.data.weather[0].icon),
-                    name: response.data.name,
-                    temp: response.data.main.temp+' °C',
-                    show: false
-                };
-            }));
+            $http.get(url).success(function (response){
+                $scope.weather.icon = self.getWeatherIcon(response.weather[0].icon);
+                $scope.weather.name= response.name;
+                $scope.weather.temp =  response.main.temp+' °C';
+                $scope.weather.show = false;
+            }).error(function (error){
+                console.log('Error http : getCurrentWeatherGeolocation')
+            });
         });
-        return deferred.promise;
     }
 
     function setCurrentPostionInfo($scope) {
-        var geocoder = new google.maps.Geocoder();
         geolocation.getLocation().then(function(data) {
+            var geocoder = new google.maps.Geocoder();
             var latlng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
             geocoder.geocode({latLng: latlng}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK && results[0] && results[1]) {

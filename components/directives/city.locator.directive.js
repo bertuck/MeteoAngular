@@ -10,7 +10,7 @@
  *
  */
 
-$app.directive('cityLocator',  ['meteoService', function(meteoService) {
+$app.directive('cityLocator',  ['meteoService', 'uiGmapGoogleMapApi', function(meteoService, GoogleMapApi) {
     return {
         restrict: 'E',
         templateUrl: 'components/blocks/city-locator.html',
