@@ -10,12 +10,10 @@
  *
  */
 
-$app.directive('cityLocator',  ['meteoService', 'uiGmapGoogleMapApi', function(meteoService, GoogleMapApi) {
+$app.directive('cityLocator', function() {
     return {
         restrict: 'E',
         templateUrl: 'components/blocks/city-locator.html',
-        controller: function($scope) {
-            meteoService.setCurrentPostionInfo($scope);
-        }
+        controller: 'cityLocatorController'
     };
-}]);
+});

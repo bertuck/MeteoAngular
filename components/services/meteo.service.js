@@ -118,12 +118,12 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
             },
             events: {
                 click: function (map, eventName, originalEventArgs) {
-                     var MapBounds = new google.maps.LatLngBounds(
+                     /*var MapBounds = new google.maps.LatLngBounds(
                      new google.maps.LatLng(52.39632350723714, 11.826165039062516),
                      new google.maps.LatLng(40.94189980474191, -6.029371093750001));
                      if (!MapBounds.contains(map.getCenter())) {
                      map.setCenter(new google.maps.LatLng(47.4596656, 2.4609375));
-                    }
+                    }*/
                 }
             },
             options: {
@@ -153,8 +153,8 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
 
     function getCurrentWeatherGeolocation($scope) {
         var self = this;
-        geolocation.getLocation().then(function(data){
-            var url = "http://api.openweathermap.org/data/2.5/weather?lat="+data.coords.latitude+"&lon="+data.coords.longitude+ "&units=metric" + appId;
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var url = "http://api.openweathermap.org/data/2.5/weather?lat="+position.coords.latitude+"&lon="+position.coords.longitude+ "&units=metric" + appId;
             $http.get(url).success(function (response){
                 $scope.weather.icon = self.getWeatherIcon(response.weather[0].icon);
                 $scope.weather.name= response.name;
@@ -166,24 +166,26 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         });
     }
 
-    function setCurrentPostionInfo($scope) {
-        geolocation.getLocation().then(function(data) {
+    function setCurrentPositionInfo() {
+        var deferred = $q.defer();
+        navigator.geolocation.getCurrentPosition(function(position) {
             var geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             geocoder.geocode({latLng: latlng}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK && results[0] && results[1]) {
-                    $scope.position = {};
-                    $scope.position.street = results[0].formatted_address;
+                    position.street = results[0].formatted_address;
                     results.forEach(function (address_component, i) {
                         if (address_component.types[0] == "locality") {
-                            $scope.position.region = address_component.address_components[2].long_name;
-                            $scope.position.country = address_component.address_components[3].long_name;
-                            $scope.position.city = address_component.address_components[0].long_name;
+                            position.region = address_component.address_components[2].long_name;
+                            position.country = address_component.address_components[3].long_name;
+                            position.city = address_component.address_components[0].long_name;
                         }
                     });
                 }
+                deferred.resolve(position);
             });
         });
+        return deferred.promise;
     }
 
     return {
@@ -193,6 +195,6 @@ $app.factory('meteoService', ['$http', '$q', '$log', 'geolocation', function($ht
         getMapConfig: getMapConfig,
         setCitiesWeatherConfig: setCitiesWeatherConfig,
         getCurrentWeatherGeolocation: getCurrentWeatherGeolocation,
-        setCurrentPostionInfo: setCurrentPostionInfo
+        setCurrentPositionInfo: setCurrentPositionInfo
     }
 }]);

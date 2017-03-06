@@ -7,7 +7,9 @@ $app.controller('meteoWidgetController', ['$scope', '$log', '$interval', 'meteoS
     };
     $scope.date = new Date();
     meteoService.getCurrentWeatherGeolocation($scope);
-    meteoService.setCurrentPostionInfo($scope);
+    meteoService.setCurrentPositionInfo().then(function(position) {
+        $scope.position = position;
+    });
     $scope.openWeatherWidget = function() {
         $scope.weather.display  = ($scope.weather.display == 'none' ? 'block' : 'none');
     };
