@@ -63,3 +63,8 @@ gulp server
 ```bash
 gulp server-build
 ```
+
+## 6. Start webserver from npm
+```bash
+npm start
+```
