@@ -1,7 +1,7 @@
 <header>
     <div class="row">
         <div class="col-lg-12">
-            <ui-gmap-google-map events="map.events" center="map.center" bounds="map.bounds" zoom="map.zoom" draggable="true" styles="map.styles" options="map.options">
+            <ui-gmap-google-map events="map.globalEvents" center="map.center" bounds="map.bounds" zoom="map.zoom" draggable="true" styles="map.styles" options="map.options">
                 <ui-gmap-window
                         show="map.window.show"
                         coords="map.window.model"
@@ -13,7 +13,7 @@
                 <ui-gmap-markers
                         models="map.markers"
                         coords="'self'"
-                        events="'self'"
+                        events="map.events"
                         options="'options'">
                 </ui-gmap-markers>
             </ui-gmap-google-map>
