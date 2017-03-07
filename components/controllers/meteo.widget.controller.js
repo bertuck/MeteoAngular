@@ -7,7 +7,7 @@
                 display: 'block'
             };
             $scope.date = new Date();
-            navigator.geolocation.getCurrentPosition(function(position) {                console.log(position);
+            navigator.geolocation.getCurrentPosition(function(position) {
                 meteoService.getCurrentWeatherGeolocation(position).then(function(weather) {
                     $scope.weather = weather;
                 });

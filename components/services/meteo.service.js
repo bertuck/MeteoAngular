@@ -162,17 +162,16 @@
                 var deferred = $q.defer();
                 var self = this;
                 var url = "http://api.openweathermap.org/data/2.5/weather?lat="+position.coords.latitude+"&lon="+position.coords.longitude+ "&units=metric&appid=" + appId;
-                deferred.resolve($http.get(url).success(function (response){
-                    return {
+                $http.get(url).success(function (response){
+                    deferred.resolve({
                         icon : self.getWeatherIcon(response.weather[0].icon),
                         name :response.name,
                         temp :  response.main.temp+' °C',
                         show : false
-                    };
+                    });
                 }).error(function (error){
                     return deferred.reject(error);
-                    //console.log('Error http : getCurrentWeatherGeolocation')
-                }));
+                });
                 return deferred.promise;
             }
 
