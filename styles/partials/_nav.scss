@@ -82,7 +82,24 @@
   width: 40px;
   margin-top: -10px;
 }
-
+@media (max-width: 768px) {
+  .navbar-header.page-scroll {
+    height: 60px;
+  }
+  .logo {
+    margin-left: 15px;
+    margin-top: 8px;
+  }
+  .navbar-toggle {
+    margin-right: 50px;
+  }
+  .menu-icon {
+    display: none !important;
+  }
+  .navbar  ul {
+    padding-left: 20px;
+  }
+}
 #mainNav .logo a img {
   float: left;
   display: block;

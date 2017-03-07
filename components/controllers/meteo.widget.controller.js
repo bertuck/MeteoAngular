@@ -18,7 +18,7 @@
         };
         var setEvents = function($scope) {
             $scope.openWeatherWidget = function() {
-                $scope.weather.display  = ($scope.weather.display == 'none' ? 'block' : 'none');
+                $scope.weather.display = ($scope.weather.display == 'none' ? 'block' : 'none');
             };
         };
         init($scope);

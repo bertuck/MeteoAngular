@@ -11,7 +11,7 @@
             </button>
             <a class="navbar-brand" href="/#/">@MeteoMap</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="{{ menuClass }}" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="hidden">
                     <a href="#page-top"></a>
@@ -23,8 +23,7 @@
                     <a href="#/more">More</a>
                 </li>
                 <li>
-                    <a class="menu-icon" ng-click="openWeatherWidget()">
-                    </a>
+                    <a class="menu-icon" ng-click="openWeatherWidget()"></a>
                 </li>
             </ul>
         </div>

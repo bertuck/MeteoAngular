@@ -15,7 +15,9 @@
                 restrict: 'E',
                 templateUrl: 'components/blocks/main-nav.html',
                 controller: function($scope) {
+                    $scope.menuClass = 'collapse navbar-collapse';
                     $scope.openMenu = function() {
+                        $scope.menuClass = ($scope.menuClass == 'collapse navbar-collapse' ? '' : 'collapse navbar-collapse');
 
                     };
                 }
