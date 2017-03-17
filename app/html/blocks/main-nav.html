@@ -6,29 +6,31 @@
     </div>
     <div class="container">
         <div class="navbar-header page-scroll">
+            <a class="menu-icon" ng-click="openWeatherWidget()"></a>
             <button ng-click="openMenu()" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="/#/">@MeteoMap</a>
+            <a class="navbar-brand" href="/">@MeteoMap</a>
         </div>
-        <div class="{{ menuClass }}" id="bs-example-navbar-collapse-1">
+        <div ng-class="menuClass" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#/">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#/more">More</a>
-                </li>
-                <li>
-                    <a class="menu-icon" ng-click="openWeatherWidget()"></a>
+                    <a href="/more">More</a>
                 </li>
             </ul>
         </div>
     </div>
+    <div class="weather-button">
+        <a class="menu-icon" ng-click="openWeatherWidget()"></a>
+    </div>
+
 </nav>
 
-<meteo-widget templateUrl="components/blocks/meteo-widget.html" templateParameter="mw.options">
+<meteo-widget templateUrl="app/html/blocks/meteo-widget.html" ng-if="showWidget" templateParameter="mw.options">
 </meteo-widget>

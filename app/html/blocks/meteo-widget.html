@@ -1,18 +1,14 @@
-<div style="display: {{ weather.display }}" class="weather-widget">
+<div class="weather-widget">
     <div class="content">
         <div class="header">
             <h2>{{date | date:'EEEE dd MMMM'}}</h2>
         </div>
         <div class="body">
-            <img src="{{ weather.icon }}" alt="">
+            <img ng-src="{{weather.icon}}" alt="">
             <h6>{{ weather.temp }}</h6>
             <div class="bottom">
                 <h4>{{ position.city }}</h4>
             </div>
         </div>
     </div>
-   <!-- <div ng-repeat="city in cities">
-        {{city.name}}
-    </div>
-    <div ng-if="error.cities">Error</div>-->
 </div>

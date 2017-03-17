@@ -27,7 +27,7 @@
 	<!-- CSS -->
 	<!-- build:css css/style.min.css -->
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="stylesheet" type="text/css" href="_build/css/style.min.css" />
 	<!-- endbuild -->
 
 </head>
@@ -36,8 +36,11 @@
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
+
 <main-nav></main-nav>
+
 <div data-ng-view="" class="container"></div>
+
 </body>
 
 <footer class="text-center">
@@ -66,32 +69,23 @@
 <!--
 <script src='//maps.googleapis.com/maps/api/js?libraires=weather,geometry,visualization&sensor=false&key=AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA'></script>
 -->
+<!--
+<script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD24iOs_0kKx-no8hP_r6fiaMjdPtKDNWA"></script>
+-->
+
 <script src='//maps.googleapis.com/maps/api/js?libraires=weather,geometry,visualization&sensor=false'></script>
 
-<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="node_modules/angular/angular.js"></script>
 <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+
+
 <script type="text/javascript" src="node_modules/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
 <script type="text/javascript" src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="node_modules/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
 <script type="text/javascript" src="node_modules/angular-google-maps/dist/angular-google-maps.min.js"></script>
 <script type="text/javascript" src="node_modules/ngtweet/dist/ngtweet.min.js"></script>
 
-<script type="text/javascript" src="app/app.js"></script>
-<script type="text/javascript" src="app/config/config.js"></script>
-
-<script type="text/javascript" src="components/services/meteo.service.js"></script>
-<script type="text/javascript" src="components/services/twitter.service.js"></script>
-<script type="text/javascript" src="components/services/local.storage.service.js"></script>
-<script type="text/javascript" src="components/services/query.service.js"></script>
-
-<script type="text/javascript" src="components/controllers/meteo.controller.js"></script>
-<script type="text/javascript" src="components/controllers/more.controller.js"></script>
-<script type="text/javascript" src="components/controllers/meteo.widget.controller.js"></script>
-<script type="text/javascript" src="components/controllers/city.locator.controller.js"></script>
-
-<script type="text/javascript" src="components/directives/main.nav.directive.js"></script>
-<script type="text/javascript" src="components/directives/responsive.nav.directive.js"></script>
-<script type="text/javascript" src="components/directives/meteo.widget.directive.js"></script>
-<script type="text/javascript" src="components/directives/city.locator.directive.js"></script>
+<script type="text/javascript" src="_build/js/scripts.js"></script>
 
 </html>
