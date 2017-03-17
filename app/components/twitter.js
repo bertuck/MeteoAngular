@@ -1,18 +1,12 @@
-'use strict';
 (function() {
-    $app.factory('twitterService', function() {
+    'use strict';
 
-        var citiesWidget = {
-            paris: '838059003909390336',
-            bordeaux: '838060842629353473',
-            marseille: '838061648191553536',
-            lyon: '838062002643812354',
-            toulouse: '838062298681991170',
-            strasbourg: '838063366937665537'
-        };
+    angular.module('meteoApp.twitter', [
+        'meteoApp.constants'
+    ])
+        .service('twitterService', ['MeteoConstants', function(MeteoConstants) {
 
-        function getWindow() {
-            return {
+            var window = {
                 id: '',
                 marker: 0,
                 show: false,
@@ -35,12 +29,13 @@
                         backgroundReapeat: 'no-repeat'
                     },
                     buttons: { close: { visible: false }},
-                    ids: citiesWidget,
+                    ids: MeteoConstants.citiesWidget
                 }
-            }
-        }
-        return {
-            getWindow: getWindow,
-        }
-    });
+            };
+
+            this.getWindow = function() {
+                return window;
+            };
+        }])
+
 })();

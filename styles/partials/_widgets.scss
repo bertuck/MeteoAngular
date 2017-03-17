@@ -11,55 +11,49 @@
     height: 200px;
     top: 100px;
     right: 0;
-}
-.weather-widget:after {
-    content: '';
-    top: -18px;
-    right: 36px;
-    content:"\A";
-    border-style: solid;
-    border-width: 10px 15px 10px 0;
-    border-color: transparent white transparent transparent;
-    position: absolute;
-    transform: rotate(90deg);
-}
-
-.weather-widget .content h4 {
-    color: #4d4d4d;
-    font-size: 1em;
-}
-
-.weather-widget .content .header {
-    display: block;
-    width: 100%;
-    background-color: #1DA1F2;
-}
-
-.weather-widget .content .header h2 {
-    color: white;
-    margin: 0;
-    padding: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: monospace;
-}
-
-.weather-widget .content img {
-    display: block;
-    margin: 1em auto;
-}
-
-.weather-widget .content h6 {
-    color: #000;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2px;
-}
-
-@media (max-width: 767px) {
-    .weather-widget {
-        top: 50px;
-        display: none !important;
+    @media (max-width: 767px) {
+        top: 100px;
     }
+    &:after {
+        content: '';
+        top: -18px;
+        right: 36px;
+        content:"\A";
+        border-style: solid;
+        border-width: 10px 15px 10px 0;
+        border-color: transparent white transparent transparent;
+        position: absolute;
+        transform: rotate(90deg);
+    }
+    .content {
+        h4 {
+            color: #4d4d4d;
+            font-size: 1em;
+        }
+        img {
+            display: block;
+            margin: 1em auto;
+        }
+        h6 {
+            color: #000;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+        .header {
+            display: block;
+            width: 100%;
+            background-color: #1DA1F2;
+            h2 {
+                color: white;
+                margin: 0;
+                padding: 10px;
+                font-size: 1.2em;
+                font-weight: bold;
+                font-family: monospace;
+            }
+        }
+    }
+
 }
